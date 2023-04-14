@@ -1,0 +1,1081 @@
+<html lang="en" ng-app="MSU" class="ng-scope wf-firasans-n3-active wf-firasans-n4-active wf-firasans-n5-active wf-firasans-n7-active wf-active"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>myMSU | Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://elearning.msu.ac.zw/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://elearning.msu.ac.zw/assets/libs/css/angular-growl.css">
+    <link rel="stylesheet" href="https://elearning.msu.ac.zw/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/assets/libs/css/style.css?ver=4.7.80">
+    <link rel="stylesheet" href="/assets/style.css?ver=4.7.80">
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript" async=""></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+var is_dev = false;
+const APP_JS_BASE_URL = "https://elearning.msu.ac.zw/";
+const APP_VERSION = "4.7.80";
+const USER_REG_NUMBER = "R2214525T";
+const USER_SESSION_ID = "0A9BCB5B-2E1D-4930-8183-420158B7B68C";
+
+</script>
+<script>
+if (!String.prototype.format) {
+	String.prototype.format = function() {
+		var args = arguments;
+		return this.replace(/{(\d+)}/g, function(match, number) { 
+				return typeof args[number] != 'undefined'
+				? args[number]
+				: match
+				;
+			});
+	};
+}
+
+function elearning_bread(links,current_page){
+	if (links.length == 0 && current_page  == ''){
+		return  '';
+	}
+	var res  = '<div class="page-breadcrumb"><nav aria-label="breadcrumb"><ol class="breadcrumb">';
+	for(var i=0; i < links.length; i++){
+		res += '<li class="breadcrumb-item"><a href="{0}" class="breadcrumb-link">{1}</a></li>'.format(links[i].url,links[i].text);
+	}
+	if (current_page !== ''){
+		res += '<li class="breadcrumb-item active" aria-current="page"><a>{0}</a></li>'.format(current_page);
+	}
+	res  += '</ol></nav></div>';
+	return res;
+}
+</script>
+<script>
+  function site_url(path){
+    if(path==undefined){path='';}
+    if (path == '/')path = '';return 'https://elearning.msu.ac.zw/' + path;}
+</script>
+
+    <style>
+        @media print {
+            .no-print, .no-print * {
+                display: none !important;
+            }
+        }
+      html{
+          zoom:90%;
+        }
+      .pageheader-title {
+    font-size: 2rem !important;
+    margin: 1rem 0 !important;
+}
+    </style>
+    
+        <style>
+        .dark-mode {
+	 background: #15202b !important;
+	 color: #fff !important;
+}
+ .dark-mode .dropdown-menu, .dark-mode .card, .dark-mode .alert-msu, .dark-mode .sidebar-dark, .dark-mode .footer, .dark-mode .dashboard-header .navbar, .dark-mode .modal-content, .dark-mode .msu-mobile-nav {
+	 background-color: #192734 !important;
+	 color: #fff !important;
+	 border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+ .dark-mode a.nav-link:hover {
+	 background: rgba(0, 0, 0, .5) !important;
+}
+ .dark-mode .btn.btn-default {
+	 color: #fff;
+	 background: rgba(0, 0, 0, 0.3);
+}
+ .dark-mode .card *, .dark-mode label, .dark-mode .page-breadcrumb .breadcrumb-link, .dark-mode p {
+	 color: #fff !important;
+}
+ .dark-mode .badge-warning {
+	 color: #000 !important;
+}
+ .dark-mode .alert-msu {
+	 color: #000 !important;
+	 background-color: #ffc107 !important;
+	 border: none;
+	 border-left: solid 6px #ff9800 !important;
+}
+
+
+ .dark-mode .card-header, .dark-mode .card-footer, .dark-mode .list-group-item, .dark-mode .modal-header, .dark-mode .modal-footer {
+	 background-color: #192734 !important;
+	 color: #fff !important;
+	 border: 1px solid rgba(0, 0, 0, 0.1) !important;
+	 border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+ .dark-mode .animated-background {
+	 background: #f6f7f8 !important;
+	 background: linear-gradient(to right, rgba(0,0,0,.3) 8%, rgba(0,0,0,.1) 18%, #201e1e 34%) !important;
+
+}
+ .dark-mode .timeline-item, .dark-mode .background-masker {
+	 background-color: #192734 !important;
+}
+ .dark-mode .pageheader-title, .dark-mode .card-link, .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6, .dark-mode .footer *, .dark-mode .dashboard-header .navbar *, .dark-mode .navbar-right-top .nav-item .nav-link {
+	 color: #fff !important;
+}
+        .dark-mode .btn-primary,.dark-mode .btn-success,.dark-mode .btn-danger{
+            color:#fff !important;
+        }
+        .dark-mode .alert-msu a,.dark-mode .alert-msu p,.alert-msu h3, {
+            color: #000 !important;
+        }
+ .dark-mode .success-box * {
+	 background-color: #4caf50 !important;
+	 background: #4caf50 !important;
+	 color: #fff !important;
+}
+ .dark-mode .warning-box * {
+	 background-color: #ffc108 !important;
+	 background: #ffc108 !important;
+	 color: #222 !important;
+}
+ .dark-mode .form-control, .dark-mode input[type="file"] {
+	 background-color: rgba(0, 0, 0, 0.1) !important;
+	 border: 1px solid rgba(0, 0, 0, 0.1) !important;
+	 border-radius: 2px !important;
+}
+ .dark-mode .alert-success {
+	 color: #155724 !important;
+	 background-color: #4caf50 !important;
+	 border-color: #4caf50 !important;
+}
+ .dark-mode .form-control:focus, .dark-mode input:-internal-autofill-selected {
+	 border-color: #0f4c75 !important;
+	 background-color: black !important;
+	 box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 100, 255, 0.5) !important;
+}
+ .dark-mode .form-control {
+	 border: 1px solid #596080 !important;
+}
+ .dark-mode .navbar-right-top .nav-item {
+	 border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+ .dark-mode .alert-danger {
+	 background: #f44336;
+	 border: none;
+}
+ .dark-mode .close {
+	 color: #f8f8f8;
+	 opacity: 1;
+}
+          .chosen-container-multi .chosen-choices {
+           padding: 0.7%;
+      }
+      .badge-secondary {
+      color: #fff !important;
+    background-color: #6c757d !important;
+}
+      .badge {
+        font-size:12px !important;
+        font-weight:bold;
+      }
+  #master_select_chosen .search-choice{
+    display:none !important;
+  }
+  
+  #slave_select_chosen .chosen-drop
+    {
+    display:none !important;
+  }
+  
+  #slave_select_chosen ul.chosen-choices {
+    border: none !important;
+    box-shadow: none !important;
+}
+  
+  #slave_select_chosen input.default{
+    color:#fff !important;
+  }
+  
+  #slave_select_chosen .chosen-container-multi .chosen-choices{
+    background-image:none !important;
+  }
+          .modal-backdrop {
+    position: fixed;
+    z-index: 1049;
+    width: 100% !important;
+    height: 100% !important;
+}
+          .nav-left-sidebar {
+    top: 0;
+    z-index: 1030 !important;
+}
+ 
+        </style>
+     
+    <!-- Optional JavaScript -->
+    <script src="https://elearning.msu.ac.zw/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+            <script type="text/javascript" src="https://elearning.msu.ac.zw/assets/libs/js/angular.js"></script>
+    
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700" media="all"><script src="https://cdn.onesignal.com/sdks/OneSignalPageSDKES6.js?v=151601" async=""></script><link rel="stylesheet" href="https://onesignal.com/sdks/OneSignalSDKStyles.css?v=2"></head>
+<body ng-controller="elearningCtrl" class="view-container ng-scope" ng-init="get_student_details()">
+<input type="hidden" readonly="" id="APP_BASE_URL" value="https://elearning.msu.ac.zw//" autocomplete="off">
+<input type="hidden" readonly="" id="FN" value="ITAI" autocomplete="off">
+<input type="hidden" readonly="" id="SN" value="MHLANGA" autocomplete="off">
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+
+<div class="dashboard-main-wrapper">
+    <!-- ============================================================== -->
+    <!-- navbar -->
+    <!-- ============================================================== -->
+    <input type="hidden" readonly="" value="/assets/pictures/R2214525T.JPG " id="profile_pic" autocomplete="off">
+
+    <div class="dashboard-header hide-mobile">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+            <a class="navbar-brand" style="text-transform: none !important;color: #111 !important;" href="/">
+                <img src="https://elearning.msu.ac.zw/assets/images/logo.png" width="30px">myMSU
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto navbar-right-top">
+                                            <li class="nav-item  notification show">
+                            <a class="nav-link nav-icons" href="#!downloads" id="navbarDropdownMenuLink1">Downloads <i class="fas fa-fw fa-download"></i> <span class="indicator"></span></a>
+
+                        </li>
+                        <li class="nav-item  notification show">
+                            <a class="nav-link nav-icons" href="#!notices" id="navbarDropdownMenuLink1">Notices <i class="fas fa-fw fa-bell"></i>
+                                <span class="indicator"></span></a>
+
+                        </li>
+                        <li class="nav-item  notification show">
+                            <a class="nav-link nav-icons" href="https://gatewaystream.com/shopping/groceries" target="_blank" id="navbarDropdownMenuLink1">Online Shopping <i class="fas fa-fw fa-shopping-cart"></i>
+                                <span class="indicator"></span></a>
+
+                        </li>
+                        <!--<li class="nav-item dropdown connection">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
+                                <li class="connection-list">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="http://mail.google.com/a/students.msu.ac.zw" target="_blank" class="connection-item"><img src="assets/images/github.png"
+                                                                                     alt=""> <span>Mail</span></a>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                            <a href="https://classroom.google.com/a/students.msu.ac.zw" target="_blank" class="connection-item"><img src="assets/images/dribbble.png"
+                                                                                     alt="">
+                                                <span>Google Classroom</span></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>-->
+                                        <li class="nav-item dropdown nav-user">
+                        <a class="nav-link nav-user-img font-weight-bold text-dark ng-binding" href="" f="" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">ITAI MHLANGA
+                            (R2214525T)
+                            <img src="/assets/pictures/R2214525T.JPG " height="30px"></a>
+                        <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                            <div class="nav-user-info">
+                                <h5 class="mb-0 text-white nav-user-name ng-binding">ITAI
+                                    MHLANGA</h5>
+
+                            </div>
+
+                            <a class="dropdown-item" href="https://elearning.msu.ac.zw/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- end navbar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- left sidebar -->
+    <!-- ============================================================== -->
+            <div class="nav-left-sidebar sidebar-dark" ng-init="is_student_completed()">
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="menu-list" style="overflow: hidden; width: auto; height: 100%;">
+                <nav class="navbar navbar-expand-lg navbar-dark fixed-top msu-mobile-nav">
+                    <a class="d-xl-none d-lg-none" href="#"></a>
+                    <button class="navbar-toggler order-first" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="text-white font-weight-bold mx-auto ml-5 p-1"> myMSU</span>
+                    </button>
+
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-item hide-mobile">
+                                <a class="nav-link h1 mx-auto" style="font-size: 2em !important;" href="https://elearning.msu.ac.zw/"><img src="https://elearning.msu.ac.zw/assets/images/logo.png">myMSU</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="https://elearning.msu.ac.zw/"><i class="fa fa-fw fa-home"></i>Home
+                                </a>
+                            </li>
+			    
+                            <li class="nav-item ">
+
+                                <a class="nav-link" href="#!feestructure"><i class="fa fa-fw fa-envelope"></i>Your Fees structure<span class="badge badge-success"></span></a>
+
+                            </li>
+	
+                            <li class="nav-item ">
+
+                                <a class="nav-link" href="#!mail"><i class="fa fa-fw fa-envelope"></i>Student Email<span class="badge badge-success"></span></a>
+
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#!profile"><i class="fa fa-fw fa-user-circle" data-toggle="collapse" data-target=".navbar-collapse"></i>Personal Details </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#!results"><i class="fa fa-fw fa-certificate"></i>Exam Results/Transcript</a>
+                            </li>
+                            <!-- <li class="nav-item ">
+                                   <a class="nav-link" href="#!/registration"><i
+                                               class="fa fas fa-registered"></i>Registration</a>
+                               </li>-->
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#!financial/statements"><i class="fa fa-fw fa-money-bill-alt"></i>Financials<span class="badge badge-success"></span></a>
+                            </li>
+
+                            <span>
+                           <li class="nav-item">
+                                <a class="nav-link" href="#!residence/applications"><i class="fa fa-fw fa-warehouse"></i>Residence<span class="badge badge-success"></span></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#!classes"><i class="fa fa-fw fa-users"></i>Online Classes</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#!library/menu"><i class="fa fa-fw fa-book"></i>Library<span class="badge badge-success"></span></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#!timetable"><i class="fa fa-fw fa-table"></i>Timetables </a>
+                            </li>
+
+                          </span>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#!notices"><i class="fas fa-fw fa-bell"></i>Notices<span class="badge badge-success"></span></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#!counselling"><i class="fa fa-fw fa-hand-holding"></i>eCounselling </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#!assessment"><i class="fa fa-fw fa-boxes"></i>Continuous Assessment </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="https://evaluation.msu.ac.zw/student/login/R2214525T" target="_blank"><i class="fa fa-fw fa-balance-scale"></i>Evaluations </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#!security"><i class="fa fa-fw fa-unlink"></i>Settings</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="https://elearning.msu.ac.zw/security/logout"><i class="fa fa-fw fa-lock"></i>Logout</a>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+
+                </nav>
+            </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 644.723px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+        </div>
+        <!-- ============================================================== -->
+    <!-- end left sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper ">
+
+
+        <div class="container-fluid dashboard-content">
+            
+                        <!-- ngView: --><div ng-view="" class="view-frame ng-scope" style=""><h2 class="pageheader-title ng-scope" style="margin-left:1% !important;">Dashboard</h2>
+
+<div class="row ng-scope" ng-init="elearning_init()">
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="row" ng-init="get_rtgs_statement()">
+
+            <div class=" col-lg-12">
+                <!-- ngIf: !student_completed --><div ng-if="!student_completed" class="alert alert-danger mb-3 ng-scope" style="background: red !important">
+                    <a href="#" class="font-weight-bold text-white">
+                        <i class="fas fa-fw fa-bell"></i>
+                        <span>On campus residence is now full.</span>
+                    </a>
+                </div><!-- end ngIf: !student_completed -->
+
+                <!-- Display the countdown timer in an element -->
+                <p id="demo"></p>
+
+                <script>
+                    // Set the date we're counting down to
+                    var countDownDate = new Date("Feb 22, 2023 13:00").getTime();
+
+                    // Update the count down every 1 second
+                    var x = setInterval(function() {
+
+                        // Get today's date and time
+                        var now = new Date().getTime();
+
+                        // Find the distance between now and the count down date
+                        var distance = countDownDate - now;
+
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        // Display the result in the element with id="demo"
+                        document.getElementById("countdown").innerHTML = days+"d " +hours + "h "
+                            + minutes + "m " + seconds + "s ";
+
+                        // If the count down is finished, write some text
+                        // if (distance < 0) {
+                        //     clearInterval(x);
+                        //     document.getElementById("demo").innerHTML = "EXPIRED";
+                        // }
+                    }, 1000);
+                </script>
+
+            </div>
+            <div class="card col-lg-12">
+                <div class="card-header card-header font-weight-bold text-uppercase">
+                    Payment Transfers (RTGS,ZIPIT)
+                    <a href="#!financial/rtgs_upload" class="btn btn-primary float-right btn-sm font-weight-bold">Upload
+                        RTGS Payment</a>
+                </div>
+                <div class="card-body d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block">
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+
+                        <tr>
+                            <th>Date</th>
+                            <th>Source Bank</th>
+                            <th>Destination Bank</th>
+                            <th>Reference</th>
+                            <th>Amount</th>
+                            <th>Date Submitted</th>
+                            <th>Status</th>
+                            <th>Proof</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- ngRepeat: statement in rtgs_statement --><!-- ngIf: $index<=5 --><tr ng-repeat="statement in rtgs_statement" ng-if="$index<=5" class="ng-scope" style="">
+                            <th class="ng-binding">2023-01-31</th>
+                            <th class="ng-binding">ZB Bank</th>
+                            <th class="ng-binding">ZB BANK-4575-486039-200</th>
+                            <th class="ng-binding">FEES R2214525T</th>
+                            <th class="ng-binding">$285,000.00</th>
+                            <th class="ng-binding">2023-01-31 16:11:05</th>
+                            <th class="ng-binding">Cancelled <!-- ngIf: statement.transtatus=="Cancelled" --><span class="text-danger ng-binding ng-scope" ng-if="statement.transtatus==&quot;Cancelled&quot;">-Reason:UPDATED</span><!-- end ngIf: statement.transtatus=="Cancelled" -->
+                            </th>
+                            <th><a href="financial/rtgs_download/138693" class="btn btn-outline-secondary btn-xs">Download</a></th>
+                        </tr><!-- end ngIf: $index<=5 --><!-- end ngRepeat: statement in rtgs_statement --><!-- ngIf: $index<=5 --><tr ng-repeat="statement in rtgs_statement" ng-if="$index<=5" class="ng-scope">
+                            <th class="ng-binding">2022-09-23</th>
+                            <th class="ng-binding">OTHER</th>
+                            <th class="ng-binding">ZB BANK-4575-486039-200</th>
+                            <th class="ng-binding">4537220923001203</th>
+                            <th class="ng-binding">$60,200.00</th>
+                            <th class="ng-binding">2022-09-23 15:46:56</th>
+                            <th class="ng-binding">Processed <!-- ngIf: statement.transtatus=="Cancelled" -->
+                            </th>
+                            <th><a href="financial/rtgs_download/112704" class="btn btn-outline-secondary btn-xs">Download</a></th>
+                        </tr><!-- end ngIf: $index<=5 --><!-- end ngRepeat: statement in rtgs_statement -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a href="#!financial/rtgs_upload" class="btn btn-primary float-right btn-sm font-weight-bold">Upload
+                        RTGS Payment</a>
+                </div>
+            </div>
+            <!--mobile friendly -->
+            <div class="card mobile-only col-lg-12">
+                <div class="card-body">
+                    <div class="list-group">
+
+                        <!-- ngRepeat: statement in rtgs_statement --><!-- ngIf: $index<=5 --><div ng-repeat="statement in rtgs_statement" ng-if="$index<=5" class="list-group-item list-group-item-action flex-column align-items-start ng-scope" style="">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 font-weight-bold text-dark ng-binding">Ref:FEES R2214525T</h5>
+                                <small class="text-muted ng-binding"></small>
+                            </div>
+                            <p class="mb-1 ng-binding">Source Bank: ZB Bank</p>
+                            <p class="mb-1 ng-binding">Destination Bank: ZB BANK-4575-486039-200</p>
+                            <small class="text-primary font-weight-bold h5 ng-binding">Amount:$285,000.00</small>
+                            <!-- ngIf: statement.transtatus=="Cancelled" --><div class="alert alert-danger ng-binding ng-scope" ng-if="statement.transtatus==&quot;Cancelled&quot;">
+                                UPDATED
+                            </div><!-- end ngIf: statement.transtatus=="Cancelled" -->
+
+                            <small class="text-dark font-weight-bold ng-binding">Submitted: 2023-01-31 16:11:05</small>
+                            <br>
+                            <small class="text-dark font-weight-bold"><a href="/financial/rtgs_download/138693" class="btn btn-primary btn-xs">Download</a></small>
+                        </div><!-- end ngIf: $index<=5 --><!-- end ngRepeat: statement in rtgs_statement --><!-- ngIf: $index<=5 --><div ng-repeat="statement in rtgs_statement" ng-if="$index<=5" class="list-group-item list-group-item-action flex-column align-items-start ng-scope">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 font-weight-bold text-dark ng-binding">Ref:4537220923001203</h5>
+                                <small class="text-muted ng-binding"></small>
+                            </div>
+                            <p class="mb-1 ng-binding">Source Bank: OTHER</p>
+                            <p class="mb-1 ng-binding">Destination Bank: ZB BANK-4575-486039-200</p>
+                            <small class="text-primary font-weight-bold h5 ng-binding">Amount:$60,200.00</small>
+                            <!-- ngIf: statement.transtatus=="Cancelled" -->
+
+                            <small class="text-dark font-weight-bold ng-binding">Submitted: 2022-09-23 15:46:56</small>
+                            <br>
+                            <small class="text-dark font-weight-bold"><a href="/financial/rtgs_download/112704" class="btn btn-primary btn-xs">Download</a></small>
+                        </div><!-- end ngIf: $index<=5 --><!-- end ngRepeat: statement in rtgs_statement -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header font-weight-bold text-uppercase">MSU Deputy Registrar-Academic Affairs Explains the Modularisation System of Teaching and Learning
+                </div>
+                <div class="card-body">
+                    <iframe width="100%" src="https://www.facebook.com/plugins/video.php?height=259&amp;href=https%3A%2F%2Fwww.facebook.com%2FMidlandsStateUniversityZimbabwe%2Fvideos%2F3793054784254860%2F&amp;show_text=true&amp;width=560&amp;t=0" height="374" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+            <div class="row x-3 m-0">
+
+                <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 py-0 px-3">
+                    <!--  <div class="alert alert-warning font-weight-bold">
+                         <h3 class="font-weight-bold"><i class="fas fa-exclamation-circle"></i> MSU Graduations
+                         </h3>
+                         <p><a target="_blank"
+                               href="https://www.youtube.com/watch?v=7-zKg6luzIs&list=PLnNPLipVsNXNIkHsscd0Mh_ukwx1vB53h"
+                               class="btn btn-primary font-weight-bold">View Videos</a></p>
+                     </div> -->
+                    <!--<div class="alert alert-success mb-3" style="background: #4caf50 !important">
+                        <a href="https://ww5.msu.ac.zw/fees-structure/" target="_blank" class="font-weight-bold text-white"
+                           ng-if="!student_completed && !marked_as_complete">
+                            <i class="fas fa-fw fa-bell"></i> August-December 2020 Fees Structure
+                            <button class="btn btn-primary btn-xs">Learn More</button>
+                        </a>
+                    </div>-->
+
+
+                    <!-- ngIf: rtgs_payments_pending -->
+
+                    <!-- ngIf: acceptance_letter.upload_photo -->
+
+                    <!-- ngIf: acceptance_letter.status && acceptance_letter.is_printed && !acceptance_letter.upload_photo -->
+
+                    <!-- ngIf: acceptance_letter.status && !acceptance_letter.is_printed && !acceptance_letter.upload_photo -->
+
+
+                </div>
+                <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <!-- ngIf: has_acceptance_letter -->
+
+                </div>
+
+
+                <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12 mb-3">
+
+                    <!-- ngIf: wrl_record.status --><div ng-if="wrl_record.status" class="alert alert-msu ng-scope" style="">
+                        <!-- ngIf: get_programme_loaded --><a href="#!/wrl" ng-if="get_programme_loaded" class="font-weight-bold ng-scope" style="">Manage your Work Related Learning details
+                            <button class="btn btn-primary btn-xs font-weight-bold">
+                                Click Here
+                            </button>
+                        </a><!-- end ngIf: get_programme_loaded -->
+                    </div><!-- end ngIf: wrl_record.status -->
+
+                </div>
+
+                <div class="col-lg-12">
+
+
+                    <!-- ngIf: student_completed && !marked_as_complete && fees_balance<0.001 && transcript_programmes.status -->
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ngIf: transcript_programmes.status && !student_completed && !marked_as_complete -->
+
+
+        <div class="text-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-1">
+            <!-- ngIf: !get_registration_loaded -->
+            <!-- ngIf: get_registration_loaded --><div ng-if="get_registration_loaded" class="card animate-if ng-scope" style="">
+
+                <div class="card-body row mx-autdo tefxt-center">
+
+                    <!--
+                      <div class="alert alert-info font-weight-bold" ng-if="!registration_status && new_fees_status">
+                          <p> Good News! We have improved our systems to automatically register you after settling your full fees.</p>
+                      </div> -->
+                    <h4 class="font-weight-bold ml-3 h4">Your Programmes</h4>
+                    <div class="mb-3 col-lg-12">
+
+                        <!-- ngRepeat: programme in student_programmes --><a ng-repeat="programme in student_programmes" href="#!results/180407/0" class="list-group-item list-group-item-action font-weight-bold ng-binding ng-scope" style="text-align: start !important;">
+                            <i class="fas fa-bookmark mr-2"></i>Master of Commerce in Information Systems Management Degree (MIM)
+                            <label class="badge badge-warning font-weight-bold ng-binding">Block-Release</label>
+                            <!-- ngIf: programme.campus_name !=false -->
+                            <!-- ngIf: programme.has_expired -->
+                        </a><!-- end ngRepeat: programme in student_programmes -->
+                    </div>
+
+                    <div class="metric-value d-inline-block font-weight-bold col-lg-12">
+                        <!-- <a ng-if='has_acceptance_letter' target="_blank" href="{{acceptance_letter.letter_url}}"
+                            ng-if="get_programme_loaded"
+                            class="btn btn-success btn-sm font-weight-bold float-left m-1">
+                             <i class="fas fa-download"></i> Download Acceptance Letter
+                         </a>-->
+                        <a href="/#!/financial/rtgs_upload" class="btn btn-outline-danger btn-sm font-weight-bold float-left m-1"><i class="fas fa-info-circle"></i> Upload RTGS Payment</a>
+
+                        <a href="#!mail" class="btn btn-outline-primary btn-sm font-weight-bold float-left m-1"><i class="fa fa-fw fa-envelope"></i> Open Student Mail</a>
+                        <!-- ngIf: !student_completed && !marked_as_complete --><a href="#!classes" ng-if="!student_completed &amp;&amp; !marked_as_complete" class="btn btn-outline-primary btn-sm font-weight-bold float-left m-1 ng-scope"><i class="fa fa-fw fa-users"></i> View Online
+                            Classes</a><!-- end ngIf: !student_completed && !marked_as_complete -->
+                        <!-- ngIf: !student_completed && !marked_as_complete --><a href="#!/video" ng-if="!student_completed &amp;&amp; !marked_as_complete" class="btn btn-outline-warning btn-sm font-weight-bold float-left m-1 ng-scope"><i class="fas fa-lightbulb"></i> Virtual Classroom Guide</a><!-- end ngIf: !student_completed && !marked_as_complete -->
+                        <a href="#!/downloads" class="btn btn-outline-warning btn-sm font-weight-bold float-left m-1"><i class="fas fa-download"></i> Downloads</a>
+
+                    </div>
+                </div>
+            </div><!-- end ngIf: get_registration_loaded -->
+        </div>
+
+
+        <div class="row col-lg-12 p-0 m-0">
+
+            <!-- ngIf: !student_completed && !marked_as_complete --><div class="text-center col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mb-1 ng-scope" ng-if="!student_completed &amp;&amp; !marked_as_complete">
+                <!-- ngIf: !get_registration_loaded -->
+                <!-- ngIf: get_registration_loaded --><div ng-if="get_registration_loaded" class="card  h-100 animate-if success-box" style="">
+                    <h5 class="card-header font-weight-bold"><i class="fa fa-fw fa-registered"></i> Registration
+                        Status
+                    </h5>
+                    <div class="card-body tefxt-center">
+                        <div class="metric-valuef d-inline-blockf text-center font-weight-bold">
+                            <!-- ngIf: registration_status --><h2 ng-if="registration_status" class="h1 font-weight-light ng-binding ng-scope">Registered</h2><!-- end ngIf: registration_status -->
+                            <!-- ngIf: !registration_status -->
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-center bg-white">
+                        <!-- ngIf: registration_status --><a ng-if="registration_status" href="#!registration" class="card-link ng-scope">Registration
+                            Record</a><!-- end ngIf: registration_status -->
+                        <a href="/#!/feestructure" class="card-link register-link">Fees Structure</a>
+                        <a></a>
+                    </div>
+                </div><!-- end ngIf: get_registration_loaded -->
+            </div><!-- end ngIf: !student_completed && !marked_as_complete -->
+            <div class="col-xl-4 text-center col-lg-6 col-md-6 col-sm-12 col-12 mb-1">
+                <!-- ngIf: !get_fees_loaded -->
+                <!-- ngIf: get_fees_loaded --><div class="card h-100 animate-if ng-scope" ng-if="get_fees_loaded" style="">
+                    <h5 class="card-header font-weight-bold"><i class="fa fa-fw fa-money-bill-alt"></i> Fees</h5>
+                    <div class="card-body row">
+                        <div class="metric-value d-inline-block col-lg-12">
+                            <a href="#!financial/statement/fees" style="color: #000;" class="mb-1 h3 text-black font-weight-light ng-binding" data-toggle="tooltip" data-placement="top" title="View RTGS Account Statement">$138,052.00
+                                <span class="badge badge-primary font-weight-bold"> RTGS</span>
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="metric-value d-inline-block col-lg-12">
+                            <a href="#!financial/statement/fees/nostro" style="color: #000;" class="mb-1 h3 text-black font-weight-light ng-binding">$0.00 <span class="badge badge-primary font-weight-bold"> USD</span></a>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer text-center bg-white">
+                        <a href="#!/financial/statement/fees" class="card-link">ZWL Statement</a>
+                        <a href="#!financial/statement/fees/nostro" class="card-link">USD Statement</a>
+                        <a href="https://www.topup.co.zw/pay-bill/midlands-state-university" target="_blank" class="card-link">Pay Fees</a>
+                    </div>
+                </div><!-- end ngIf: get_fees_loaded -->
+            </div>
+            <div class="col-xl-4 text-center col-lg-6 col-md-6 col-sm-12 col-12 mb-1">
+                <!-- ngIf: !get_goldcard_loaded -->
+                <!-- ngIf: get_goldcard_loaded --><div class="card h-100 animate-if ng-scope" ng-if="get_goldcard_loaded" style="">
+                    <h5 class="card-header font-weight-bold"><i class="fa fa-fw fa-credit-card"></i> Gold Card</h5>
+                    <div class="card-body row">
+<!--                        <div class="metric-value d-inline-block">-->
+<!--                            <h2 class="mb-1 h1 font-weight-light">{{goldcard_balance | currency}}</h2>-->
+<!--                        </div>-->
+                        <div class="metric-value d-inline-block col-lg-12">
+                            <a href="#!financial/statement/goldcard" style="color: #000;" class="mb-1 h3 text-black font-weight-light ng-binding" data-toggle="tooltip" data-placement="top" title="View RTGS GoldCard Statement">$0.00
+                                <span class="badge badge-primary font-weight-bold"> RTGS</span>
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="metric-value d-inline-block col-lg-12">
+                            <a href="#!financial/statement/goldcard" style="color: #000;" class="mb-1 h3 text-black font-weight-light ng-binding" data-toggle="tooltip" data-placement="top" title="View USD GoldCard Statement">$0.00
+                                <span class="badge badge-primary font-weight-bold"> USD</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer text-center bg-white">
+                        <a href="#!financial/statement/goldcard" class="card-link">Statement</a>
+                        <a href="#!/financial/statement/overpayment" class="card-link">Transfer from Fees</a>
+                    </div>
+                </div><!-- end ngIf: get_goldcard_loaded -->
+            </div>
+            <!-- Add by Liberty Dandira 15/05/2021 -->
+            <!--
+   <div class="col-xl-4 text-center col-lg-6 col-md-6 col-sm-12 col-12 mb-1">
+               <loading-mask ng-if="!get_goldcard_loaded"></loading-mask>
+               <div class="card  h-100 animate-if" ng-if="get_goldcard_loaded">
+                   <h5 class="card-header font-weight-bold"><i class="fa fa-fw fa-credit-card"></i> Registration and Fees Structures</h5>
+                   <div class="card-body">
+                                                   <div  class="mb-1 text-black font-weight-light">Registration is automatic.<br> In order to get registered, you need to settle your full fees.</div>
+
+
+                   </div>
+
+                   <div class="card-footer text-center bg-white">
+                       <a href="#!feestructure"
+                          class="card-link">See Fees structure</a>
+                   </div>
+               </div>
+           </div>-->
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- financials-->
+
+<div class="row pt-3 ng-scope">
+
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mt-3">
+        <!-- ngIf: !get_fees_loaded -->
+        <!-- ngIf: get_fees_loaded --><div class="card h-100 animate-if ng-scope" ng-if="get_fees_loaded" style="">
+            <h5 class="card-header font-weight-bold"><i class="fas fa-bill mr-2"></i> Financials</h5>
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <a href="#!financial/statement/fees" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-money-bill-alt"></i> Fees Statement <span class="badge badge-primary font-weight-bold"> RTGS</span></a>
+                        <a href="#!financial/statement/fees/nostro" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-money-bill-alt"></i> Fees Statement <span class="badge badge-primary font-weight-bold"> USD</span></a>
+                        <a href="#!financial/statement/rtgs" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-donate"></i> RTGS
+                            Payments</a>
+                        <a href="#!financial/statement/bank" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-piggy-bank"></i> Bank
+                            Deposits</a>
+                        <!-- ngIf: !student_completed --><a href="#!financial/statement/overpayment" ng-if="!student_completed" class="list-group-item list-group-item-action ng-scope"><i class="fa fa-fw fa-arrow-alt-circle-right"></i>Overpayment Funds Transfer</a><!-- end ngIf: !student_completed -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- end ngIf: get_fees_loaded -->
+    </div>
+
+    <!-- ngIf: !student_completed --><div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mt-3 ng-scope" ng-if="!student_completed">
+        <!-- ngIf: !get_fees_loaded -->
+        <!-- ngIf: get_fees_loaded --><div class="card h-100 animate-if ng-scope" ng-if="get_fees_loaded" style="">
+            <h5 class="card-header font-weight-bold"><i class="fas fa-book mr-2"></i> Academics</h5>
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+
+                        <a href="#!assessment" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-boxes"></i> Continuous
+                            Assessment</a>
+                        <a href="#!timetable" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-table"></i> Exam
+                            Timetable</a>
+                        <a href="#!timetable/teaching" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-calendar"></i> Teaching
+                            Timetable</a>
+                        <a href="#!classes" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-users"></i> Online
+                            Classes</a>
+                        <a href="#!library/menu" class="list-group-item list-group-item-action"><i class="fa fa-fw fa-book"></i> Library</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- end ngIf: get_fees_loaded -->
+    </div><!-- end ngIf: !student_completed -->
+    <!-- ngIf: !student_completed --><div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mt-3 ng-scope" ng-if="!student_completed">
+        <!-- ngIf: get_res_loaded !=true -->
+        <!-- ngIf: get_res_loaded --><div class="card h-100 animate-if ng-scope" ng-if="get_res_loaded" style="">
+            <h5 class="card-header font-weight-bold"><i class="fas fa-bed mr-2"></i> Accommodation</h5>
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+
+                        <!-- ngIf: res_status.status -->
+
+                        <!-- ngIf: res_status.applications.length >0 -->
+                        <!-- ngIf: !res_status.status --><div ng-if="!res_status.status" class="ng-scope">
+
+                            
+                        </div><!-- end ngIf: !res_status.status -->
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer text-center bg-white">
+                <!-- ngIf: res_status.open -->
+            </div>
+        </div><!-- end ngIf: get_res_loaded -->
+    </div><!-- end ngIf: !student_completed -->
+
+
+    <div class="row col-lg-12 mt-3">
+        <!-- ngIf: registration_status --><div class="col-lg-4 col-md-6 col-sm-12 col-12 ng-scope" ng-if="registration_status" style="">
+            <!-- ngIf: get_medical_loaded !=true -->
+            <!-- ngIf: get_medical_loaded --><div ng-if="get_medical_loaded" class="card small-card   warnifng-box" style="">
+                <h5 class="card-header font-weight-bold"><i class="fas fa-ambulance mr-2"></i> Medical Aid</h5>
+                <div class="card-body">
+
+                    <!-- ngIf: medical_aid_status -->
+                    <div class="media">
+                        <!-- ngIf: !medical_aid_status --><div class="media-body ng-scope" ng-if="!medical_aid_status">
+                            <p class="text-danger font-weight-bold">You are not yet covered. </p>
+
+                        </div><!-- end ngIf: !medical_aid_status -->
+                    </div>
+
+                </div>
+            </div><!-- end ngIf: get_medical_loaded -->
+        </div><!-- end ngIf: registration_status -->
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade ng-scope" id="myModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Room Application</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                You are about to delete a room you applied for, do you want to continue?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" ng-click="delete_res()">Remove</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- The Confirm Residence -->
+<div class="modal fade ng-scope" id="confirmResModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Residence Check-in</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <!-- ngIf: res_status.status -->
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success font-weight-bold" ng-click="confirm_residence()">Confirm
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <div class="footer no-print">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-6 col-md-12 col-sm-12 col-12 font-weight-bold text-darker" style="color:#000">
+                       <!-- ngIf: dark_mode=='true' || dark_mode -->
+                <!-- ngIf: dark_mode=='false' || !dark_mode --><button ng-if="dark_mode=='false' || !dark_mode" class="btn btn-success btn-xs font-weight-bold ng-scope" ng-click="toogle_dark_mode('true')"><i class="fas fa-moon"></i>Toggle Dark Mode</button><!-- end ngIf: dark_mode=='false' || !dark_mode -->
+             <!--Midlands State University-->
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12 font-weight-bold">
+                        <a href="" data-toggle="modal" data-target="#aboutModal" style="color:#000">Credits</a>
+
+                        <a class="mx-2" href="#!security" style="color:#000">Security Settings</a>
+                        <a href="security/logout" class="ml-3" style="color:#000">Logout</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+</div>
+<div growl="" class="ng-isolate-scope"><div class="growl-container growl-fixed top-right" ng-class="wrapperClasses()"><!-- ngRepeat: message in growlMessages.directives[referenceId].messages --></div></div>
+
+<!-- Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="exampleModalLabel">About Developers</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <ul class="list-group">
+                        <a href="https://www.linkedin.com/in/brighton-munatsi/" target="_blank" style="color:#000;" class="list-group-item border-0">
+                            <p class="font-weight-bold text-darker m-0 h3">Brighton Munatsi</p>
+                            <p>Systems Analyst</p>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/mashcomzw/" target="_blank" style="color:#000;" class="list-group-item border-left-0 border-right-0">
+                            <p class="font-weight-bold text-darker m-0 h3">Blessing Mashoko</p>
+                            <p>Webmaster</p>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/simbarashe-jerry-maunga-19a7b6bb/" target="_blank" style="color:#000;" class="list-group-item border-bottom-0 border-left-0 border-right-0">
+                            <p class="font-weight-bold text-darker m-0 h3">Simbarashe Jerry Maunga</p>
+                            <p>Mobile Developer</p>
+                        </a>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary font-weight-bold" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- end main wrapper -->
+<!-- ============================================================== -->
+  <script src="https://lecturer.msu.ac.zw/assets/libs/js/chosen.jquery.min.js"></script>
+
+<!-- include the css and sprite -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css">
+<link rel="image_src" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen-sprite.png">
+  
+  <script src="https://lecturer.msu.ac.zw/assets/libs/js/chosen.jquery.min.js"></script>
+
+<!-- include the css and sprite -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css">
+<link rel="image_src" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen-sprite.png">
+  
+  
+<script type="text/javascript" src="https://lecturer.msu.ac.zw/assets/libs/js/selectize.js"></script>
+    <script type="text/javascript" src="https://elearning.msu.ac.zw/assets/libs/js/angular-sanitize.js"></script>
+    <script type="text/javascript" src="https://elearning.msu.ac.zw/assets/libs/js/angular-route.js"></script>
+    <script type="text/javascript" src="https://elearning.msu.ac.zw/assets/libs/js/angular-animate.min.js"></script>
+    <script type="text/javascript" src="https://elearning.msu.ac.zw/assets/libs/js/angular-growl.js"></script>
+    <script type="text/javascript" src="https://elearning.msu.ac.zw/assets/libs/js/angular-cookies.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="https://elearning.msu.ac.zw/assets/libs/js/loading-bar.css">
+    <script type="text/javascript" src="https://elearning.msu.ac.zw/assets/libs/js/loading-bar.js"></script>
+
+    <script type="text/javascript" src="/assets/libs/js/elearning.js?ver=4.7.80"></script>
+
+<script src="https://elearning.msu.ac.zw/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="https://elearning.msu.ac.zw/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+<script src="https://elearning.msu.ac.zw/assets/libs/js/main-js.js"></script>
+<script src="https://elearning.msu.ac.zw/assets/libs/js/moment.min.js"></script>
+<script src="https://elearning.msu.ac.zw/assets/libs/js/combodate.js"></script>
+<script src="https://elearning.msu.ac.zw/assets/libs/js/offline.min.js"></script>
+
+<script src="https://elearning.msu.ac.zw/assets/libs/js/firebase.js"></script>
+<script src="https://elearning.msu.ac.zw/assets/libs/js/firebase-database.js"></script>
+<script src="https://elearning.msu.ac.zw/assets/counselling/bower_components/crypto-js/crypto-js.js"></script>
+    <script src="https://elearning.msu.ac.zw/assets/libs/js/dist/angulartics.min.js"></script>
+    <script src="https://elearning.msu.ac.zw/assets/libs/js/dist/angulartics-ga.min.js"></script>
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-118916498-4', 'auto');
+
+    </script>
+    <!-- End Google Analytics -->
+    <script type="text/javascript">
+
+        $('.navbar-nav>li>a').on('click', function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+
+
+        WebFontConfig = {
+            google: {families: ['Fira Sans:300,400,500,700']}
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+        // ]]>
+    </script>
+    <!--onesignal integration-->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+            OneSignal.init({
+                appId: "df1a01fe-4491-43a8-831b-64352408fad8",
+            });
+        });
+    </script>
+<!--<a class="btn-group-fab" href="https://helpdesk.msu.ac.zw" target="_blank" role="group" aria-label="FAB Menu">
+    <div>
+        <button type="button" class="btn btn-main btn-primary has-tooltip" data-placement="left" title="Get Help"><i
+                    class="fas fa-question"></i></button>
+
+    </div>
+</a>-->
+
+
+
+<div class="offline-ui offline-ui-up"><div class="offline-ui-content"></div><a href="" class="offline-ui-retry"></a></div><iframe src="https://elearning-msu.os.tc/webPushIframe" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation" style="display: none;"></iframe></body></html>
